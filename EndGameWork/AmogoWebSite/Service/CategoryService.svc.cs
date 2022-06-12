@@ -13,6 +13,7 @@ namespace AmogoWebSite.Service
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class CategoryService
     {
-        
+        [WebGet(UriTemplate = "/Category")]
+        public string GetAllCategory() => String.Join("ss", "ss");
     }
 }
