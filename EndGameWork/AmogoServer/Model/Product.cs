@@ -6,10 +6,8 @@ using System.Web;
 
 namespace AmogoWebSite.Model
 {
-    //fetch('http://localhost:65388/Service/CategoryService.svc/Category', { mode: 'no-cors' });
-
     [DataContract]
-    public class Category
+    public class Product
     {
         [DataMember]
         int id;
@@ -17,10 +15,18 @@ namespace AmogoWebSite.Model
         [DataMember]
         string name;
 
-        public Category(int id, string name)
+        [DataMember]
+        decimal price;
+
+        [DataMember]
+        SubCategory subCategory;
+
+        public Product(int id, string name, decimal price, SubCategory subCategory)
         {
             this.id = id;
             this.name = name;
+            this.price = price;
+            this.subCategory = subCategory;
         }
     }
 }

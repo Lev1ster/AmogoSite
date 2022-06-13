@@ -6,10 +6,8 @@ using System.Web;
 
 namespace AmogoWebSite.Model
 {
-    //fetch('http://localhost:65388/Service/CategoryService.svc/Category', { mode: 'no-cors' });
-
     [DataContract]
-    public class Category
+    public class SubCategory
     {
         [DataMember]
         int id;
@@ -17,10 +15,18 @@ namespace AmogoWebSite.Model
         [DataMember]
         string name;
 
-        public Category(int id, string name)
+        [DataMember]
+        Type[] filters;
+
+        [DataMember]
+        Category mainCategory;
+
+        public SubCategory(int id, Category mainCategory, string name, Type[] filters)
         {
             this.id = id;
+            this.mainCategory = mainCategory;
             this.name = name;
+            this.filters = filters;
         }
     }
 }
