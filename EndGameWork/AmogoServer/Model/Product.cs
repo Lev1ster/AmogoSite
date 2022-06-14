@@ -16,6 +16,9 @@ namespace AmogoWebSite.Model
         string name;
 
         [DataMember]
+        string description;
+
+        [DataMember]
         decimal price;
 
         [DataMember]
@@ -24,13 +27,14 @@ namespace AmogoWebSite.Model
         [DataMember]
         string urlImage;
 
-        public Product(int id, string name, decimal price, SubCategory subCategory, string urlImage)
+        public Product(int id, string name, string description, decimal price, SubCategory subCategory, string urlImage)
         {
             this.id = id;
             this.name = name;
             this.price = price;
             this.subCategory = subCategory;
             this.urlImage = urlImage;
+            this.description = description;
         }
     }
 }

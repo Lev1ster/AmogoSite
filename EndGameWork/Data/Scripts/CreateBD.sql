@@ -47,22 +47,22 @@ CREATE TABLE dbo.SubCategory
 GO
 CREATE TABLE [dbo.Messages]
 (
-ID_owner INT NOT NULL,
-ID_second INT NOT NULL,
-[Message] TEXT,
-[Date] datetime NOT NULL,
-CONSTRAINT FK_ID_owner_Message FOREIGN KEY (ID_owner)
-REFERENCES Accounts (ID),
-CONSTRAINT Constr_Message CHECK (ID_owner <> ID_second),
-CONSTRAINT FK_ID_second_Message FOREIGN KEY (ID_second)
-REFERENCES Accounts (ID)
+	ID_owner INT NOT NULL,
+	ID_second INT NOT NULL,
+	[Message] TEXT,
+	[Date] datetime NOT NULL,
+	CONSTRAINT FK_ID_owner_Message FOREIGN KEY (ID_owner)
+		REFERENCES Accounts (ID),
+	CONSTRAINT Constr_Message CHECK (ID_owner <> ID_second),
+	CONSTRAINT FK_ID_second_Message FOREIGN KEY (ID_second)
+		REFERENCES Accounts (ID)
 )
 GO
 CREATE TABLE [dbo.SupMessages]
 (
-ID_owner INT NOT NULL,
-[Message] TEXT,
-[Date] datetime NOT NULL,
-CONSTRAINT FK_ID_owner_SupMessage FOREIGN KEY (ID_owner)
-REFERENCES Accounts (ID) ON DELETE CASCADE
+	ID_owner INT NOT NULL,
+	[Message] TEXT,
+	[Date] datetime NOT NULL,
+	CONSTRAINT FK_ID_owner_SupMessage FOREIGN KEY (ID_owner)
+		REFERENCES Accounts (ID) ON DELETE CASCADE
 )

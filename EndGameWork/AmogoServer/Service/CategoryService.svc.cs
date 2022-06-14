@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
+﻿using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
-using System.Text;
 
 namespace AmogoWebSite.Service
 {
@@ -13,9 +9,12 @@ namespace AmogoWebSite.Service
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class CategoryService
     {
-        List<Model.Category> categories;
-
         [WebGet(UriTemplate = "/Category", ResponseFormat = WebMessageFormat.Json)]
-        public Model.Category[] GetAllCategory() => categories.ToArray();
+        public Model.Category[] GetAllCategory() => Model.Category.categories.ToArray();
+
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "/Category", ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped)]
+        public void Add(string name, string urlImage = "") => Model.Category.Add(name, urlImage);
     }
 }
