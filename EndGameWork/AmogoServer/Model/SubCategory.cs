@@ -10,9 +10,6 @@ namespace AmogoWebSite.Model
     public class SubCategory
     {
         [DataMember]
-        int id;
-
-        [DataMember]
         string name;
 
         [DataMember]
@@ -21,12 +18,15 @@ namespace AmogoWebSite.Model
         [DataMember]
         Category mainCategory;
 
-        public SubCategory(int id, Category mainCategory, string name, Type[] filters)
+        [DataMember]
+        string urlImage;
+
+        public SubCategory(Category mainCategory, string name, Type[] filters, string urlImage)
         {
-            this.id = id;
             this.mainCategory = mainCategory;
             this.name = name;
             this.filters = filters;
+            this.urlImage = urlImage;
         }
     }
 }

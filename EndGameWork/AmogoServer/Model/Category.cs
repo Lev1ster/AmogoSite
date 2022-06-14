@@ -12,15 +12,15 @@ namespace AmogoWebSite.Model
     public class Category
     {
         [DataMember]
-        int id;
-
-        [DataMember]
         string name;
 
-        public Category(int id, string name)
+        [DataMember]
+        string urlImage;
+
+        public Category(string name, string urlImage)
         {
-            this.id = id;
             this.name = name;
+            this.urlImage = urlImage;
         }
     }
 }

@@ -21,12 +21,16 @@ namespace AmogoWebSite.Model
         [DataMember]
         SubCategory subCategory;
 
-        public Product(int id, string name, decimal price, SubCategory subCategory)
+        [DataMember]
+        string urlImage;
+
+        public Product(int id, string name, decimal price, SubCategory subCategory, string urlImage)
         {
             this.id = id;
             this.name = name;
             this.price = price;
             this.subCategory = subCategory;
+            this.urlImage = urlImage;
         }
     }
 }
