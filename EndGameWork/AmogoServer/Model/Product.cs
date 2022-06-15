@@ -27,14 +27,18 @@ namespace AmogoWebSite.Model
         [DataMember]
         string urlImage;
 
-        public Product(int id, string name, string description, decimal price, SubCategory subCategory, string urlImage)
+        [DataMember]
+        object[] valueFilters;
+
+        public Product(int id, string name, string description, decimal price, string urlImage, SubCategory subCategory, object[] valueFilters)
         {
             this.id = id;
             this.name = name;
             this.price = price;
-            this.subCategory = subCategory;
             this.urlImage = urlImage;
             this.description = description;
+            this.subCategory = subCategory;
+            this.valueFilters = valueFilters;
         }
     }
 }
