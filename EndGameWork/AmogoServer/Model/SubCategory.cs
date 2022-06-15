@@ -46,7 +46,7 @@ namespace AmogoWebSite.Model
                             int j = 0;
                             while (rdr.Read())
                             {
-                                if (j >= 5)
+                                if (j >= 6)
                                 {
                                     types.Add(rdr[0].ToString());
                                     names.Add(rdr[1].ToString());
@@ -95,6 +95,7 @@ namespace AmogoWebSite.Model
                         "[Name] nvarchar(50) NOT NULL, " +
                         "[Description] TEXT, " +
                         "[Cost] decimal NOT NULL, " +
+                        "[Created] datetime NOT NULL, " +
                         "url text" +
                     ")", connection))
                 {

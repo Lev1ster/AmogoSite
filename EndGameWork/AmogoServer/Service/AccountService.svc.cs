@@ -11,9 +11,8 @@ namespace AmogoWebSite.Service
 {
     [ServiceContract(Namespace = "")]
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
-    public class ProductService
+    public class AccountService
     {
-        [WebGet(UriTemplate = "/Category/SubCategory/Products", ResponseFormat = WebMessageFormat.Json)]
-        public Model.Product[] GetAllProducts() => Model.Product.products.ToArray();
+        
     }
 }

@@ -32,13 +32,13 @@ namespace AmogoWebSite.Model
                             {
                                 List<object> list = new List<object>();
 
-                                for (int j = 5; j < reader.FieldCount; j++)
+                                for (int j = 6; j < reader.FieldCount; j++)
                                 {
                                     list.Add(reader[j]);
                                 }
 
                                 products.Add(new Product(int.Parse(reader[0].ToString()), reader[1].ToString(),
-                                    reader[2].ToString(), decimal.Parse(reader[3].ToString()), reader[4].ToString(),
+                                    reader[2].ToString(), decimal.Parse(reader[3].ToString()), DateTime.Parse(reader[4].ToString()), reader[5].ToString(),
                                     SubCategory.subCategories[i], list.ToArray()));
                             }
                         }
@@ -55,6 +55,21 @@ namespace AmogoWebSite.Model
             }
         }
 
+        public static Product[] GetProducts(string subCategory)
+        {
+            List<Product> list = new List<Product>();
+
+            var sub = SubCategory.subCategories.Find(subs => subs.name == subCategory);
+
+            foreach (var item in products)
+            {
+                if (item.subCategory == sub)
+                    list.Add(item);
+            }
+
+            return list.ToArray();
+        }
+
         public static void Add(string name, string description, decimal price,
             string subCategory, object[] valueFilters, string urlImage = "")
         {
@@ -62,16 +77,26 @@ namespace AmogoWebSite.Model
             {
                 connection.Open();
 
+                int id;
+
                 using (var cmd = new SqlCommand($"INSERT INTO {subCategory}" +
-                    " VALUES(@Name, @url)", connection))
+                    $" VALUES(@Name, @Descr, @Cost, @Date, @url, {string.Join(", ", valueFilters as string[])})", connection))
                 {
                     cmd.Parameters.AddWithValue("Name", name);
                     cmd.Parameters.AddWithValue("url", urlImage);
 
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQueryAsync();
+
+                    cmd.CommandText = $"SELECT ID FROM {subCategory} WHERE @Name = Name AND Created = @Date";
+
+                    var rdr = cmd.ExecuteReader();
+                    rdr.Read();
+                    id = int.Parse(rdr[0].ToString());
+                    rdr.Close();
+                    rdr.Dispose();
                 }
 
-                products.Add(new Product(name, urlImage));
+                products.Add(new Product(id, name, description, price, DateTime.Now, urlImage, SubCategory.subCategories.Find(sub => sub.name == subCategory), valueFilters));
             }
             catch (SqlException)
             {
@@ -83,21 +108,21 @@ namespace AmogoWebSite.Model
             }
         }
 
-        public static void Delete(string name)
+        public static void Delete(string subCategory, int ID)
         {
             try
             {
                 connection.Open();
 
-                using (var cmd = new SqlCommand("DELETE FROM dbo.Category " +
-                    "WHERE NameCategory = @Name", connection))
+                using (var cmd = new SqlCommand($"DELETE FROM {subCategory} " +
+                    "WHERE  ID = @ID", connection))
                 {
-                    cmd.Parameters.AddWithValue("Name", name);
+                    cmd.Parameters.AddWithValue("ID", ID);
 
                     cmd.ExecuteNonQuery();
                 }
 
-                products.Remove(products.Find(cat => cat.name == name));
+                products.Remove(products.Find(cat => cat.id == ID));
             }
             catch (SqlException)
             {
@@ -125,16 +150,20 @@ namespace AmogoWebSite.Model
         SubCategory subCategory;
 
         [DataMember]
+        DateTime created;
+
+        [DataMember]
         string urlImage;
 
         [DataMember]
         object[] valueFilters;
 
-        public Product(int id, string name, string description, decimal price, string urlImage, SubCategory subCategory, object[] valueFilters)
+        public Product(int id, string name, string description, decimal price, DateTime created, string urlImage, SubCategory subCategory, object[] valueFilters)
         {
             this.id = id;
             this.name = name;
             this.price = price;
+            this.created = created;
             this.urlImage = urlImage;
             this.description = description;
             this.subCategory = subCategory;
