@@ -22,7 +22,7 @@ namespace AmogoWebSite.Model
         {
             try
             {
-                using (var cmd = new SqlCommand("SELECT * FROM dbo.Category", connection))
+                using (var cmd = new SqlCommand("SELECT NameCategory, image FROM dbo.Category", connection))
                 {
                     connection.Open();
 
@@ -35,9 +35,9 @@ namespace AmogoWebSite.Model
                     }
                 }
             }
-            catch (SqlException e)
+            catch (SqlException)
             {
-                throw new Exception("Ошибка подключения к базе данных", e.InnerException);
+                throw;
             }
             finally
             {
@@ -51,7 +51,7 @@ namespace AmogoWebSite.Model
             {
                 connection.Open();
 
-                using(var cmd = new SqlCommand("INSERT INTO dbo.Category VALUES(@Name, @url)", connection))
+                using (var cmd = new SqlCommand("INSERT INTO dbo.Category VALUES(@Name, @url)", connection))
                 {
                     cmd.Parameters.AddWithValue("Name", name);
                     cmd.Parameters.AddWithValue("url", urlImage);
@@ -61,7 +61,33 @@ namespace AmogoWebSite.Model
 
                 categories.Add(new Category(name, urlImage));
             }
-            catch(SqlException)
+            catch (SqlException)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public static void Delete(string name)
+        {
+            try
+            {
+                connection.Open();
+
+                using (var cmd = new SqlCommand("DELETE FROM dbo.Category " +
+                    "WHERE NameCategory = @Name", connection))
+                {
+                    cmd.Parameters.AddWithValue("Name", name);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+                categories.Remove(categories.Find(cat => cat.name == name));
+            }
+            catch (SqlException)
             {
                 throw;
             }
@@ -72,10 +98,10 @@ namespace AmogoWebSite.Model
         }
 
         [DataMember]
-        string name;
+        public string name;
 
         [DataMember]
-        string urlImage;
+        public string urlImage;
 
         public Category(string name, string urlImage)
         {
