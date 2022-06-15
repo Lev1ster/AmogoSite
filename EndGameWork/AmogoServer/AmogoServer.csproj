@@ -78,7 +78,6 @@
   <ItemGroup>
     <Compile Include="Model\Accounts.cs" />
     <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Converter.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\SubCategory.cs" />

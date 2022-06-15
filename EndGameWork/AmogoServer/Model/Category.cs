@@ -77,12 +77,19 @@ namespace AmogoWebSite.Model
             {
                 connection.Open();
 
+                var list = SubCategory.GetSubCategories(categories.Find(cat => cat.name == name));
+
                 using (var cmd = new SqlCommand("DELETE FROM dbo.Category " +
                     "WHERE NameCategory = @Name", connection))
                 {
                     cmd.Parameters.AddWithValue("Name", name);
 
                     cmd.ExecuteNonQuery();
+
+                    for (int i = 0; i < list.Length; i++)
+                    {
+                        SubCategory.Delete(list[i].name);
+                    }
                 }
 
                 categories.Remove(categories.Find(cat => cat.name == name));

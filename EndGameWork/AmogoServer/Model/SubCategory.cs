@@ -71,6 +71,18 @@ namespace AmogoWebSite.Model
             }
         }
 
+        public static SubCategory[] GetSubCategories(Category category)
+        {
+            List<SubCategory> subs = new List<SubCategory>();
+
+            for (int i = 0; i < subCategories.Count; i++)
+            {
+                if (subCategories[i].mainCategory == category)
+                    subs.Add(subCategories[i]);
+            }
+
+            return subs.ToArray();
+        }
         public static void Add(string mainCategory, string name, string[] filterName, string[] filterType, string urlImage = "")
         {
             try
@@ -149,7 +161,7 @@ namespace AmogoWebSite.Model
         }
 
         [DataMember]
-        string name;
+        public string name;
 
         [DataMember]
         string[] filtersName;

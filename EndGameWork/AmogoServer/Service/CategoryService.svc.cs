@@ -9,7 +9,11 @@ namespace AmogoWebSite.Service
     public class CategoryService
     {
         [WebGet(UriTemplate = "/Category", ResponseFormat = WebMessageFormat.Json)]
-        public Model.Category[] GetAllCategory() => Model.Category.categories.ToArray();
+        public Model.Category[] GetAllCategories() => Model.Category.categories.ToArray();
+
+        [WebGet(UriTemplate = "/Category/{CategoryName}", ResponseFormat = WebMessageFormat.Json)]
+        public Model.Category GetCategory(string CategoryName)
+            => Model.Category.categories.Find(category => category.name == CategoryName);
 
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,
             UriTemplate = "/Category", ResponseFormat = WebMessageFormat.Json,
@@ -36,5 +40,13 @@ namespace AmogoWebSite.Service
             UriTemplate = "/Category/SubCategory/{SubCategoryName}", ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
         public void DeleteSubCategory(string SubCategoryName) => Model.SubCategory.Delete(SubCategoryName);
+
+        [WebGet(UriTemplate = "/Category/{CategoryName}/SubCategories", ResponseFormat = WebMessageFormat.Json)]
+        public Model.SubCategory[] GetSubCategories(string CategoryName) 
+            => Model.SubCategory.GetSubCategories(GetCategory(CategoryName));
+
+        [WebGet(UriTemplate = "/Category/SubCategory/{SubCategoryName}", ResponseFormat = WebMessageFormat.Json)]
+        public Model.SubCategory GetSubCategory(string SubCategoryName)
+            => Model.SubCategory.subCategories.Find(subs => subs.name == SubCategoryName);
     }
 }
