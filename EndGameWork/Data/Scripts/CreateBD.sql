@@ -66,3 +66,14 @@ CREATE TABLE [dbo.SupMessages]
 	CONSTRAINT FK_ID_owner_SupMessage FOREIGN KEY (ID_owner)
 		REFERENCES Accounts (ID) ON DELETE CASCADE
 )
+GO
+CREATE TABLE [dbo.Accouts_Favorit]
+(
+	ID_Acc INT NOT NULL,
+	SubCat nvarchar(50) NOT NULL,
+	ID_Product INT NOT NULL,
+	CONSTANT FK_ID_Acc_AccFav FOREIGN KEY (ID_Acc)
+		REFERENCES Accounts (ID) ON DELETE CASCADE,
+	CONSTANT FK_SubCat_AccFav FOREIGN KEY (SubCat)
+		REFERENCES SubCategory (NameSubCategory) ON DELETE CASCADE
+)

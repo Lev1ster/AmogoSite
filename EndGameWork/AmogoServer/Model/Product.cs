@@ -32,13 +32,13 @@ namespace AmogoWebSite.Model
                             {
                                 List<object> list = new List<object>();
 
-                                for (int j = 6; j < reader.FieldCount; j++)
+                                for (int j = 7; j < reader.FieldCount; j++)
                                 {
                                     list.Add(reader[j]);
                                 }
 
-                                products.Add(new Product(int.Parse(reader[0].ToString()), reader[1].ToString(),
-                                    reader[2].ToString(), decimal.Parse(reader[3].ToString()), DateTime.Parse(reader[4].ToString()), reader[5].ToString(),
+                                products.Add(new Product(int.Parse(reader[0].ToString()), int.Parse(reader[1].ToString()),
+                                    reader[2].ToString(), reader[3].ToString(), decimal.Parse(reader[4].ToString()), DateTime.Parse(reader[5].ToString()), reader[6].ToString(),
                                     SubCategory.subCategories[i], list.ToArray()));
                             }
                         }
@@ -70,7 +70,7 @@ namespace AmogoWebSite.Model
             return list.ToArray();
         }
 
-        public static void Add(string name, string description, decimal price,
+        public static void Add(int idAcc, string name, string description, decimal price,
             string subCategory, object[] valueFilters, string urlImage = "")
         {
             try
@@ -80,14 +80,19 @@ namespace AmogoWebSite.Model
                 int id;
 
                 using (var cmd = new SqlCommand($"INSERT INTO {subCategory}" +
-                    $" VALUES(@Name, @Descr, @Cost, @Date, @url, {string.Join(", ", valueFilters as string[])})", connection))
+                    $" VALUES(@idAcc, @Name, @Descr, @Cost, @Date, @url, {string.Join(", ", valueFilters as string[])})", connection))
                 {
+                    cmd.Parameters.AddWithValue("idAcc", idAcc);
                     cmd.Parameters.AddWithValue("Name", name);
                     cmd.Parameters.AddWithValue("url", urlImage);
+                    cmd.Parameters.AddWithValue("Descr", description);
+                    cmd.Parameters.AddWithValue("Cost", price);
+                    cmd.Parameters.AddWithValue("Date", DateTime.Now);
+
 
                     cmd.ExecuteNonQueryAsync();
 
-                    cmd.CommandText = $"SELECT ID FROM {subCategory} WHERE @Name = Name AND Created = @Date";
+                    cmd.CommandText = $"SELECT ID FROM {subCategory} WHERE @idAcc = ID_Acc AND @Name = Name AND Created = @Date";
 
                     var rdr = cmd.ExecuteReader();
                     rdr.Read();
@@ -96,7 +101,7 @@ namespace AmogoWebSite.Model
                     rdr.Dispose();
                 }
 
-                products.Add(new Product(id, name, description, price, DateTime.Now, urlImage, SubCategory.subCategories.Find(sub => sub.name == subCategory), valueFilters));
+                products.Add(new Product(id, idAcc, name, description, price, DateTime.Now, urlImage, SubCategory.subCategories.Find(sub => sub.name == subCategory), valueFilters));
             }
             catch (SqlException)
             {
@@ -135,7 +140,10 @@ namespace AmogoWebSite.Model
         }
 
         [DataMember]
-        int id;
+        public int id;
+
+        [DataMember]
+        public int idAcc;
 
         [DataMember]
         string name;
@@ -158,9 +166,10 @@ namespace AmogoWebSite.Model
         [DataMember]
         object[] valueFilters;
 
-        public Product(int id, string name, string description, decimal price, DateTime created, string urlImage, SubCategory subCategory, object[] valueFilters)
+        public Product(int id, int idAcc, string name, string description, decimal price, DateTime created, string urlImage, SubCategory subCategory, object[] valueFilters)
         {
             this.id = id;
+            this.idAcc = idAcc;
             this.name = name;
             this.price = price;
             this.created = created;

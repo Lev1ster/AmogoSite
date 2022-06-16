@@ -46,7 +46,7 @@ namespace AmogoWebSite.Model
                             int j = 0;
                             while (rdr.Read())
                             {
-                                if (j >= 6)
+                                if (j >= 7)
                                 {
                                     types.Add(rdr[0].ToString());
                                     names.Add(rdr[1].ToString());
@@ -92,11 +92,14 @@ namespace AmogoWebSite.Model
                 using (var cmd = new SqlCommand("CREATE TABLE " + name +
                     "(" +
                         "ID int IDENTITY PRIMARY KEY, " +
+                        "ID_Acc int, " +
                         "[Name] nvarchar(50) NOT NULL, " +
                         "[Description] TEXT, " +
                         "[Cost] decimal NOT NULL, " +
                         "[Created] datetime NOT NULL, " +
-                        "url text" +
+                        "url text," +
+                        $" CONSTRAINT ID_Acc_{name} FOREIGN KEY (ID_Acc) " +
+                        $"REFERENCES dbo.Accounts (ID) ON DELETE CASCADE" +
                     ")", connection))
                 {
 
