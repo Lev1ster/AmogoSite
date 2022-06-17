@@ -25,7 +25,7 @@ namespace AmogoWebSite.Model
                     using (var cmd = new SqlCommand("SELECT ID_owner, ID_second, " +
                         "Message, Date" +
                         " FROM Messages " +
-                        "ORDER BY Date DESC", connection))
+                        "ORDER BY Date ASC", connection))
                     {
                         connection.Open();
 

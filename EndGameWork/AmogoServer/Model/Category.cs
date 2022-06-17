@@ -8,8 +8,6 @@ using System.Web;
 
 namespace AmogoWebSite.Model
 {
-    //fetch('http://localhost:65388/Service/CategoryService.svc/Category', { mode: 'no-cors' });
-
     [DataContract]
     public class Category
     {
