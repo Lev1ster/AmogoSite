@@ -142,9 +142,9 @@ namespace AmogoWebSite.Model
         string text;
 
         [DataMember]
-        DateTime date;
+        string date;
 
-        public Message(int idOwner, int idSecond, string text, DateTime date)
+        public Message(int idOwner, int idSecond, string text, string date)
         {
             this.idOwner = idOwner;
             this.idSecond = idSecond;

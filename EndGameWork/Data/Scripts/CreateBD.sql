@@ -50,7 +50,7 @@ CREATE TABLE [Messages]
 	ID_owner INT NOT NULL,
 	ID_second INT NOT NULL,
 	[Message] TEXT,
-	[Date] datetime NOT NULL,
+	[Date] nvarchar(50) NOT NULL,
 	CONSTRAINT FK_ID_owner_Message FOREIGN KEY (ID_owner)
 		REFERENCES Accounts (ID),
 	CONSTRAINT Constr_Message CHECK (ID_owner <> ID_second),
@@ -62,7 +62,7 @@ CREATE TABLE [SupMessages]
 (
 	ID_owner INT NOT NULL,
 	[Message] TEXT,
-	[Date] datetime NOT NULL,
+	[Date] nvarchar(50) NOT NULL,
 	CONSTRAINT FK_ID_owner_SupMessage FOREIGN KEY (ID_owner)
 		REFERENCES Accounts (ID) ON DELETE CASCADE
 )

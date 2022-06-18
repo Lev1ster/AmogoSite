@@ -96,7 +96,7 @@ namespace AmogoWebSite.Model
                         "[Name] nvarchar(50) NOT NULL, " +
                         "[Description] TEXT, " +
                         "[Cost] decimal NOT NULL, " +
-                        "[Created] datetime NOT NULL, " +
+                        "[Created] nvarchar(50) NOT NULL, " +
                         "url text," +
                         $" CONSTRAINT ID_Acc_{name} FOREIGN KEY (ID_Acc) " +
                         $"REFERENCES dbo.Accounts (ID) ON DELETE CASCADE" +

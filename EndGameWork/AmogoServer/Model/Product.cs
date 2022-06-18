@@ -38,7 +38,7 @@ namespace AmogoWebSite.Model
                                 }
 
                                 products.Add(new Product(int.Parse(reader[0].ToString()), int.Parse(reader[1].ToString()),
-                                    reader[2].ToString(), reader[3].ToString(), decimal.Parse(reader[4].ToString()), DateTime.Parse(reader[5].ToString()), reader[6].ToString(),
+                                    reader[2].ToString(), reader[3].ToString(), decimal.Parse(reader[4].ToString()), DateTime.Parse(reader[5].ToString()).ToString(), reader[6].ToString(),
                                     SubCategory.subCategories[i], list.ToArray()));
                             }
                         }
@@ -87,7 +87,7 @@ namespace AmogoWebSite.Model
                     cmd.Parameters.AddWithValue("url", urlImage);
                     cmd.Parameters.AddWithValue("Descr", description);
                     cmd.Parameters.AddWithValue("Cost", price);
-                    cmd.Parameters.AddWithValue("Date", DateTime.Now);
+                    cmd.Parameters.AddWithValue("Date", DateTime.Now.ToString());
 
 
                     cmd.ExecuteNonQuery();
@@ -101,7 +101,7 @@ namespace AmogoWebSite.Model
                     rdr.Dispose();
                 }
 
-                products.Add(new Product(id, idAcc, name, description, price, DateTime.Now, urlImage, SubCategory.subCategories.Find(sub => sub.name == subCategory), valueFilters));
+                products.Add(new Product(id, idAcc, name, description, price, DateTime.Now.ToString(), urlImage, SubCategory.subCategories.Find(sub => sub.name == subCategory), valueFilters));
             }
             catch (SqlException)
             {
@@ -158,7 +158,7 @@ namespace AmogoWebSite.Model
         SubCategory subCategory;
 
         [DataMember]
-        DateTime created;
+        string created;
 
         [DataMember]
         string urlImage;
@@ -166,7 +166,7 @@ namespace AmogoWebSite.Model
         [DataMember]
         object[] valueFilters;
 
-        public Product(int id, int idAcc, string name, string description, decimal price, DateTime created, string urlImage, SubCategory subCategory, object[] valueFilters)
+        public Product(int id, int idAcc, string name, string description, decimal price, string created, string urlImage, SubCategory subCategory, object[] valueFilters)
         {
             this.id = id;
             this.idAcc = idAcc;

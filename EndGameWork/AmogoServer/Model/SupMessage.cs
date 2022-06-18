@@ -120,9 +120,9 @@ namespace AmogoWebSite.Model
         string Text;
 
         [DataMember]
-        DateTime date;
+        string date;
 
-        public SupMessage(int iD_owner, string text, DateTime date)
+        public SupMessage(int iD_owner, string text, string date)
         {
             ID_owner = iD_owner;
             Text = text;
