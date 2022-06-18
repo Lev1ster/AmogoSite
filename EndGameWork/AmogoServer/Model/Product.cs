@@ -22,7 +22,7 @@ namespace AmogoWebSite.Model
             {
                 for (int i = 0; i < SubCategory.subCategories.Count; i++)
                 {
-                    using (var cmd = new SqlCommand($"SELECT * FROM {SubCategory.subCategories[i].name}", connection))
+                    using (var cmd = new SqlCommand($"SELECT * FROM [{SubCategory.subCategories[i].name}]", connection))
                     {
                         connection.Open();
 
@@ -79,8 +79,8 @@ namespace AmogoWebSite.Model
 
                 int id;
 
-                using (var cmd = new SqlCommand($"INSERT INTO {subCategory}" +
-                    $" VALUES(@idAcc, @Name, @Descr, @Cost, @Date, @url, {string.Join(", ", valueFilters as string[])})", connection))
+                using (var cmd = new SqlCommand($"INSERT INTO [{subCategory}]" +
+                    $" VALUES(@idAcc, @Name, @Descr, @Cost, @Date, @url, {string.Join(", ", valueFilters)})", connection))
                 {
                     cmd.Parameters.AddWithValue("idAcc", idAcc);
                     cmd.Parameters.AddWithValue("Name", name);
@@ -90,9 +90,9 @@ namespace AmogoWebSite.Model
                     cmd.Parameters.AddWithValue("Date", DateTime.Now);
 
 
-                    cmd.ExecuteNonQueryAsync();
+                    cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = $"SELECT ID FROM {subCategory} WHERE @idAcc = ID_Acc AND @Name = Name AND Created = @Date";
+                    cmd.CommandText = $"SELECT ID FROM [{subCategory}] WHERE @idAcc = ID_Acc AND @Name = Name AND Created = @Date";
 
                     var rdr = cmd.ExecuteReader();
                     rdr.Read();
@@ -119,7 +119,7 @@ namespace AmogoWebSite.Model
             {
                 connection.Open();
 
-                using (var cmd = new SqlCommand($"DELETE FROM {subCategory} " +
+                using (var cmd = new SqlCommand($"DELETE FROM [{subCategory}] " +
                     "WHERE  ID = @ID", connection))
                 {
                     cmd.Parameters.AddWithValue("ID", ID);

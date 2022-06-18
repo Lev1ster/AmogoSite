@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -15,11 +15,58 @@
 
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="assets/js/table.js"></script>
     <script>
-        getTable("http://localhost:65388/Service/CategoryService.svc/Category");
+        var id = document.location.search.replace("?name=", "");
+
+        $.getJSON("http://localhost:65388/Service/CategoryService.svc/Category/SubCategory/" + id, function (data) {
+            var head_Item = "";
+
+            document.getElementById("MainName").innerHTML = document.location.search.replace("?name=", "") + " (" + data["mainCategory"]["name"] + ") ";
+
+            head_Item += "<tr>";
+
+            head_Item += "<th>ID</th>";
+            head_Item += "<th>ID_Acc</th>";
+            head_Item += "<th>Name</th>";
+            head_Item += "<th>Description</th>";
+            head_Item += "<th>Cost</th>";
+            head_Item += "<th>Created</th>";
+            head_Item += "<th>URL</th>";
+
+            for (item in data["filtersName"]) {
+                head_Item += "<th>" + data["filtersName"][item] + "</th>";
+            }
+
+            document.getElementById("headhead").innerHTML = head_Item;
+        });
+
+        $.getJSON("http://localhost:65388/Service/ProductService.svc/Category/SubCategory/" + id + "/Products", function (data) {
+            var body_Item = "";
+
+            body_Item += "<tr>";
+
+            for (item in data) {
+                body_Item += "<td>" + data[item]["id"] + "</td>";
+                body_Item += "<td>" + data[item]["idAcc"] + "</td>";
+                body_Item += "<td>" + data[item]["name"] + "</td>";
+                body_Item += "<td>" + data[item]["description"] + "</td>";
+                body_Item += "<td>" + data[item]["price"] + "</td>";
+                body_Item += "<td>" + data[item]["created"] + "</td>";
+                body_Item += "<td>" + data[item]["urlImage"] + "</td>";
+
+                for (filter in data[item]["valueFilters"]) {
+                    body_Item += "<td>" + data[item]["valueFilters"][filter] + "</td>"
+                }
+            }
+
+
+            body_Item += "</tr>";
+
+            document.getElementById("bodybody").innerHTML = body_Item;
+        });
 
         $.getJSON("http://localhost:65388/Service/CategoryService.svc/Category/SubCategory", function (data) {
             var out = "";
@@ -73,7 +120,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="menu-icon fa fa-laptop"></i>Категории</a>
+                        <a href="Category.html"><i class="menu-icon fa fa-laptop"></i>Категории</a>
                     </li>
 
                     <li class="menu-item-has-children dropdown">

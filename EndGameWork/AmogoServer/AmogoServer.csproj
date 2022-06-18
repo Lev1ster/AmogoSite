@@ -1,5 +1,4 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -82,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Amogo\admin\Accounts.html" />
     <Content Include="Amogo\admin\assets\css\style.css" />
     <Content Include="Amogo\admin\assets\css\style.css.map" />
     <Content Include="Amogo\admin\assets\js\dashboard.js" />
@@ -95,6 +95,7 @@
     <Content Include="Amogo\admin\assets\js\init-scripts\peitychart\peitychart.init.js" />
     <Content Include="Amogo\admin\assets\js\init-scripts\vector-map\vector.init.js" />
     <Content Include="Amogo\admin\assets\js\main.js" />
+    <Content Include="Amogo\admin\assets\js\table.js" />
     <Content Include="Amogo\admin\assets\js\widgets.js" />
     <Content Include="Amogo\admin\assets\scss\style.scss" />
     <Content Include="Amogo\admin\assets\scss\_gauge.scss" />
@@ -104,6 +105,9 @@
     <Content Include="Amogo\admin\assets\scss\_widgets.scss" />
     <Content Include="Amogo\admin\index.html" />
     <Content Include="Amogo\admin\Category.html" />
+    <Content Include="Amogo\admin\Messages.html" />
+    <Content Include="Amogo\admin\SubCategory.html" />
+    <Content Include="Amogo\admin\SupMessage.html" />
     <Content Include="Amogo\admin\vendors\animate.css\.bower.json" />
     <Content Include="Amogo\admin\vendors\animate.css\animate-config.json" />
     <Content Include="Amogo\admin\vendors\animate.css\animate.css" />
@@ -2804,10 +2808,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.targets'))" />
   </Target>
-  <Import Project="..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.4.7.3\build\Microsoft.TypeScript.MSBuild.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

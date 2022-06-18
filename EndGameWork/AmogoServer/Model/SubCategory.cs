@@ -89,8 +89,8 @@ namespace AmogoWebSite.Model
             {
                 connection.Open();
 
-                using (var cmd = new SqlCommand("CREATE TABLE " + name +
-                    "(" +
+                using (var cmd = new SqlCommand("CREATE TABLE [" + name +
+                    "](" +
                         "ID int IDENTITY PRIMARY KEY, " +
                         "ID_Acc int, " +
                         "[Name] nvarchar(50) NOT NULL, " +
@@ -107,7 +107,7 @@ namespace AmogoWebSite.Model
 
                     for (int i = 0; i < filterType.Length; i++)
                     {
-                        cmd.CommandText = "ALTER TABLE " + name + $" ADD {filterName[i]} {filterType[i]} NOT NULL";
+                        cmd.CommandText = "ALTER TABLE [" + name + $"] ADD {filterName[i]} {filterType[i]} NOT NULL";
 
                         cmd.ExecuteNonQuery();
                     }

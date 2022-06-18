@@ -122,7 +122,7 @@ namespace AmogoWebSite.Model
                     cmd.Parameters.AddWithValue("isAdmin", admin);
                     cmd.Parameters.AddWithValue("url", urlAvatar);
 
-                    cmd.ExecuteNonQueryAsync();
+                    cmd.ExecuteNonQuery();
 
                     cmd.CommandText = $"SELECT ID FROM Accounts WHERE @Login = [Login]";
 

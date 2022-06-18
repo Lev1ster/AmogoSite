@@ -25,6 +25,19 @@
     <link rel="stylesheet" href="vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        $.getJSON("http://localhost:65388/Service/CategoryService.svc/Category/SubCategory", function (data) {
+            var out = "";
+
+            for (key in data) {
+                out += "<li><i class=\"fa fa - table\"></i><a href=\"SubCategory.html?name=" + data[key]["name"] + "\">" + data[key]["name"] + "</a></li>"
+            };
+            document.getElementById("subCategory").innerHTML = out;
+        });
+    </script>
+
+
     <link rel="stylesheet" href="assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
@@ -50,25 +63,20 @@
                         <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Аккаунты</a>
 
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="table.html">Пользователи</a></li>
-                            <li><i class="fa fa-table"></i><a href="table.html">Сообщения</a></li>
-                            <li><i class="fa fa-table"></i><a href="table.html">Сообщения в поддержку</a></li>
-                            <li><i class="fa fa-table"></i><a href="table.html">Товары в избранном</a></li>
-                            <li><i class="fa fa-table"></i><a href="table.html">Товары на продажу</a></li>
+                            <li><i class="fa fa-table"></i><a href="Accounts.html">Пользователи</a></li>
+                            <li><i class="fa fa-table"></i><a href="Messages.html">Сообщения</a></li>
+                            <li><i class="fa fa-table"></i><a href="SupMessage.html">Сообщения в поддержку</a></li>
                         </ul>
                     </li>
 
                     <li>
-                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Категории</a>
+                        <a href="Category.html"><i class="menu-icon fa fa-laptop"></i>Категории</a>
                     </li>
 
                     <li class="menu-item-has-children dropdown">
                         <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Подкатегории</a>
 
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="table.html">Все товары</a></li>
-                            <li><i class="fa fa-table"></i><a href="table.html">Кат</a></li>
-                            <li><i class="fa fa-table"></i><a href="table.html">Кат</a></li>
+                        <ul class="sub-menu children dropdown-menu" id="subCategory">
                         </ul>
                     </li>
                 </ul>
@@ -113,8 +121,7 @@
                 align-content: center;
                 justify-content: flex-end;
                 flex-direction: column;
-
-                margin-top:20vh;
+                margin-top: 20vh;
             }
         </style>
 
@@ -136,6 +143,8 @@
 
 
     <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+
+
     <script src="vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>

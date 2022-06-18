@@ -45,7 +45,7 @@ CREATE TABLE dbo.SubCategory
 	ON UPDATE CASCADE
 )
 GO
-CREATE TABLE [dbo.Messages]
+CREATE TABLE [Messages]
 (
 	ID_owner INT NOT NULL,
 	ID_second INT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE [dbo.Messages]
 		REFERENCES Accounts (ID)
 )
 GO
-CREATE TABLE [dbo.SupMessages]
+CREATE TABLE [SupMessages]
 (
 	ID_owner INT NOT NULL,
 	[Message] TEXT,
@@ -67,7 +67,7 @@ CREATE TABLE [dbo.SupMessages]
 		REFERENCES Accounts (ID) ON DELETE CASCADE
 )
 GO
-CREATE TABLE [dbo.Accouts_Favorit]
+CREATE TABLE [Accouts_Favorit]
 (
 	ID_Acc INT NOT NULL,
 	SubCat nvarchar(50) NOT NULL,
