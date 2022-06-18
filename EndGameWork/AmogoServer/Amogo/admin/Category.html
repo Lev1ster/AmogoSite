@@ -123,13 +123,16 @@
                                             <th>Name</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody class="listCategory">
                                             <script>
-                                                
+                                                $.getJSON("http://localhost:49168/Service/CategoryService.svc/Category", function (data) {
+                                                    var out = ""; // создаем пустую строковую переменную
+                                                    for (key in data) { // создаем цикл for in
+                                                            out += ("<tr><td>" + data[key]["name"] + "</td></tr>");
+                                                    };
+                                                    $("tbody").html(out); // добавляем в элемент <div> значение переменной
+                                                });
                                             </script>
-                                        </tr>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -7,12 +7,12 @@ CREATE DATABASE AmogoBD
 	ON 
 	(
 		NAME = 'AmogoDatabase',
-		FILENAME = 'C:\Users\PC\AmogoSite\EndGameWork\Data\AmogoDatabase.mdf'
+		FILENAME = 'C:\Users\amkaf\AmogoSite\EndGameWork\Data\AmogoDatabase.mdf'
 	)
 	LOG ON
 	(
 		NAME = 'AmogoBd_log',
-		FILENAME = 'C:\Users\PC\AmogoSite\EndGameWork\Data\AmogoBd_log.ldf'
+		FILENAME = 'C:\Users\amkaf\AmogoSite\EndGameWork\Data\AmogoBd_log.ldf'
 	)
 GO
 use AmogoBD
@@ -72,8 +72,8 @@ CREATE TABLE [dbo.Accouts_Favorit]
 	ID_Acc INT NOT NULL,
 	SubCat nvarchar(50) NOT NULL,
 	ID_Product INT NOT NULL,
-	CONSTANT FK_ID_Acc_AccFav FOREIGN KEY (ID_Acc)
+	CONSTRAINT FK_ID_Acc_AccFav FOREIGN KEY (ID_Acc)
 		REFERENCES Accounts (ID) ON DELETE CASCADE,
-	CONSTANT FK_SubCat_AccFav FOREIGN KEY (SubCat)
+	CONSTRAINT FK_SubCat_AccFav FOREIGN KEY (SubCat)
 		REFERENCES SubCategory (NameSubCategory) ON DELETE CASCADE
 )
