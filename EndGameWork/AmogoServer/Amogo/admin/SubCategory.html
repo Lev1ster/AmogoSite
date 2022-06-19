@@ -21,7 +21,7 @@
     <script>
         var id = document.location.search.replace("?name=", "");
 
-        $.getJSON("http://localhost:65388/Service/CategoryService.svc/Category/SubCategory/" + id, function (data) {
+        $.getJSON("http://localhost:49168/Service/CategoryService.svc/Category/SubCategory/" + id, function (data) {
             var head_Item = "";
 
             document.getElementById("MainName").innerHTML = document.location.search.replace("?name=", "") + " (" + data["mainCategory"]["name"] + ") ";
@@ -43,7 +43,7 @@
             document.getElementById("headhead").innerHTML = head_Item;
         });
 
-        $.getJSON("http://localhost:65388/Service/ProductService.svc/Category/SubCategory/" + id + "/Products", function (data) {
+        $.getJSON("http://localhost:49168/Service/ProductService.svc/Category/SubCategory/" + id + "/Products", function (data) {
             var body_Item = "";
 
             body_Item += "<tr>";

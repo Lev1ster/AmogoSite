@@ -34,7 +34,7 @@ namespace AmogoWebSite.Model
                             while (reader.Read())
                             {
                                 messages.Add(new Message(int.Parse(reader[0].ToString()), int.Parse(reader[1].ToString()), 
-                                    reader[2].ToString(), DateTime.Parse(reader[3].ToString())));
+                                    reader[2].ToString(), DateTime.Parse(reader[3].ToString()).ToString()));
                             }
                         }
                     }
@@ -77,11 +77,11 @@ namespace AmogoWebSite.Model
                     cmd.Parameters.AddWithValue("ID_Own", ID_Own);
                     cmd.Parameters.AddWithValue("ID_Sec", ID_Sec);
                     cmd.Parameters.AddWithValue("Text", text);
-                    cmd.Parameters.AddWithValue("Date", DateTime.Now);
+                    cmd.Parameters.AddWithValue("Date", DateTime.Now.ToString());
 
                     cmd.ExecuteNonQuery();
 
-                    messages.Add(new Message(ID_Own, ID_Sec, text, DateTime.Now));
+                    messages.Add(new Message(ID_Own, ID_Sec, text, DateTime.Now.ToString()));
                 }
             }
             catch(SqlException)

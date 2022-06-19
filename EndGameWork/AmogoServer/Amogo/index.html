@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="CSS\style.css">
+    <link rel="stylesheet" href="CSS\slider.css">
+    <title>Amogo</title>
+    <link rel="stylesheet" href="slider/chief-slider.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="slider/chief-slider.min.js"></script>
+
+    <script>
+        var category = "";
+        var product = "";
+
+        var count = 0;
+        $.getJSON("http://localhost:49168/Service/CategoryService.svc/Category", function (data) {
+            for (key in data) {
+                category += "<div class=\"slider__item\">" + data[key]["name"] + "</div>";
+            }
+
+            document.getElementById("categoryMain").innerHTML = category;
+        });
+
+        product += "<li class=\"maincenter\">";
+
+        $.getJSON("http://localhost:49168/Service/ProductService.svc/Category/SubCategory/Product", function (data) {
+            for (key in data) {
+                if (count % 4 == 0 && count > 0) {
+                    product += "</li><li class=\"maincenter\">"
+                }
+
+                product += " <div class=\"mainlist\">" + data[key]["name"] + "</div>";
+
+                count++;
+            }
+
+            document.getElementById("productMain").innerHTML = product;
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = new ChiefSlider('.slider', {
+                loop: true
+            });
+        });
+    </script>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="headers">
+        <div class="Amogo">
+            <a href=""><img src="img/Amogo.png"></a>
+        </div>
+        <div class="labelSupport">
+            <a href="" style="font-weight:bolder; color:white">
+                Помощь
+            </a>
+        </div>
+        <div class="labelRA">
+            <a href="" style="font-weight:bolder; color:white">
+                Войти/Регистрация
+            </a>
+        </div>
+        <div class="labelAdvertisement">
+            <a href="" style="font-weight:bolder; color:white">
+                Разместить объявление
+            </a>
+        </div>
+
+    </div>
+    <div class="search">
+
+        <form style="width: 45vw;">
+            <input type="text" placeholder="Поиск по объявлениям...">
+            <button type="submit">
+                <a style="font-weight:bolder; color:white">
+                    Найти
+                </a>
+            </button>
+        </form>
+
+    </div>
+
+    <div class="container">
+
+        <div class="slider">
+            <div class="slider__wrapper">
+                <div class="slider__items" id="categoryMain">
+                    <div class="slider__item"></div>
+                </div>
+            </div>
+            <a href="#" class="slider__control" data-slide="prev"></a>
+            <a href="#" class="slider__control" data-slide="next"></a>
+        </div>
+
+    </div>
+    <p style="margin-left: 13%; font-weight:bolder; font-size:30px">Послeдние объявления</p>
+    <div class="main" style="padding-left: 0px;">
+        <ul id="productMain">
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="copyright" data-slide="next" href="#"></div>
+    </div>
+</body>
+</html>
