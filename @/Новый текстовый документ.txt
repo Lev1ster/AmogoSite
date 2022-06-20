@@ -1,0 +1,9 @@
+1. http://ru.wikipedia.org/wiki/Канал_связи
+2. http://ru.wikipedia.org/wiki/Ehernet
+3. http://ru.wikipedia.org/wiki/Wi-Fi
+4. http://ru.wikipedia.org/wiki/Язык_программирования
+5. Дронов В. А. HTML 5, CSS 3 и Web 2.0. Разработка современных Web-сайтов – Издательство БХВ – с. 414
+6. Троелсен и Джепикс. Язык программирования C# 7 и платформы .NET и .NET Core - 2018г.
+7. https://habr.com/ru
+8. https://ru.wikipedia.org/wiki/Windows_Communication_Foundation
+9. https://docs.microsoft.com/ru-ru/dotnet/framework/wcf

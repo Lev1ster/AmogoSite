@@ -32,7 +32,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" action="http://localhost:65388/Service/AccountService.svc/Account/reg/istr">
 					<span class="login100-form-title p-b-26">
 						Welcome
 					</span>
@@ -40,8 +40,8 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="login">
+					<div class="wrap-input100 validate-input" data-validate="Enter login">
+						<input class="input100" type="text" name="login" id="login">
 						<span class="focus-input100" data-placeholder="Login"></span>
 					</div>
 
@@ -49,26 +49,46 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="password" id="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="name" id="name">
+						<span class="focus-input100" data-placeholder="Name"></span>
+					</div>
+
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="lastName" id="lastName">
+						<span class="focus-input100" data-placeholder="LastName"></span>
+					</div>
+
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="telephone" id="telephone">
+						<span class="focus-input100" data-placeholder="Telephone"></span>
+					</div>
+
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="urlAvatar" , id="urlAvatar">
+						<span class="focus-input100" data-placeholder="urlAvatar"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Login
+								Register
 							</button>
 						</div>
 					</div>
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Do you have profile?
 						</span>
 
-						<a class="txt2" href="#">
-							Sign Up
+						<a class="txt2" href="../login/index.html">
+							Sign In
 						</a>
 					</div>
 				</form>
@@ -95,6 +115,7 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="js/send.js"></script>
 
 </body>
 </html>

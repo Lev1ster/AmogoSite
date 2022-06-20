@@ -175,10 +175,10 @@ namespace AmogoWebSite.Model
         public int id;
 
         [DataMember]
-        string login;
+        public string login;
 
         [DataMember]
-        string password;
+        public string password;
 
         [DataMember]
         string name;

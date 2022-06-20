@@ -24,15 +24,15 @@ body {
 }
 
     .slider__item:nth-child(1) {
-        background-color: #f44336;
+        background-image:url('../img/mebely.jpg')
     }
 
     .slider__item:nth-child(2) {
-        background-color: #9c27b0;
+        background-image: url('../img/canc.jpg')
     }
 
     .slider__item:nth-child(3) {
-        background-color: #3f51b5;
+        background-image: url('../img/elec.jpg')
     }
 
     .slider__item:nth-child(4) {

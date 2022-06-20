@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title>Admin</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,9 +19,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="assets/js/table.js"></script>
     <script>
-        getTable("http://localhost:49168/Service/AccountService.svc/Accounts/Messages");
+        getTable("http://localhost:65388/Service/AccountService.svc/Accounts/Messages");
 
-        $.getJSON("http://localhost:49168/Service/CategoryService.svc/Category/SubCategory", function (data) {
+        $.getJSON("http://localhost:65388/Service/CategoryService.svc/Category/SubCategory", function (data) {
             var out = "";
 
             for (key in data) {
@@ -53,8 +53,8 @@
         <nav class="navbar navbar-expand-sm navbar-default">
 
             <div class="navbar-header">
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./"><img src="../img/Amogo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./"><img src="../img/Amogo.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -108,7 +108,7 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                            <a class="nav-link" href="../login/index.html"><i class="fa fa-power-off"></i> Logout</a>
                         </div>
                     </div>
                 </div>

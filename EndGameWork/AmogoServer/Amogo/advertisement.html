@@ -2,51 +2,65 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="C:\Users\walki\OneDrive\Рабочий стол\Диплом\CSS\style.css">
+    <link rel="stylesheet" href="CSS\style.css">
     <title>lAdvertisement</title>
 </head>
 <body>
-<div class="headers">
-    <div class="Amogo">
-        <img src ="img/Amogo.png">
-    </div>
-    <div class="labelSupport">
-        <a style="font-weight:bolder; color:white">
-            Помощь
-        </a>
-    </div>
-    <div class="labelRA">
-    <a style="font-weight:bolder;color:white">
-        Войти/Регистрация
-    </a>
-    </div>
-    <div class="labelAdvertisement" >
-        <a style="font-weight:bolder; color:white">            
-            Разместить объявление
-        </a>
-    </div>
-   
-</div>
-<div class="search">
-    <div class="lineSearch"></div>
-</div>
+    <div class="headers">
+        <div class="Amogo">
+            <a href="index.html"><img src="img/Amogo.png"></a>
+        </div>
+        <div class="labelSupport">
+            <a href="" style="font-weight:bolder; color:white">
+                Помощь
+            </a>
+        </div>
+        <div class="labelAdvertisement">
+            <a href="advertisement.html" style="font-weight:bolder; color:white">
+                Разместить объявление
+            </a>
+        </div>
 
-
-<div class="AdvertisementMain">
-    <div class="Filters"></div>
-    <ul>
-        <li>
-         <div class="Advertisementlist"></div>
-        </li>
-        <li>
-            <div class="Advertisementlist"></div>
-           </li>
-      
-           
+    </div>
+<div class="CreateAdvertisement">
+    <ul style="margin-top: 450px;">
+    <li style="display: flex; flex-direction: row;justify-content: flex-start;align-content: center;align-items: center; margin-left: -100%; margin-top: -80%;"><p  style=" font-weight:bolder; font-size:30px;  margin-top: 50px;">Выберете категорию</p>
+    <div class="select-wrapper" style="margin-top: 51px;margin-left: 10px; ">
+        <div class="select-arrow-3" ></div>
+        <select style=" font-size:22px">
+          <option>Мебель</option>
+          <option>Техника</option>
+          <option>Канцтовары</option>
+        </select>
+      </div>
+    </li>
+    <li style = "display: flex; flex-direction: row;justify-content: flex-start;align-content: center;align-items: center; margin-left: -100%;">
+      <p  style="font-weight:bolder; font-size:30px;  margin-top: 50px;">Описание</p>
+      <input type="text" style="width:50%; margin-left: 15.5%;  background: transparent; border: none; border-bottom: 1px solid #000000; border-color: #33BBFE;">
+    </li>
+    <li style = "display: flex; flex-direction: row;justify-content: flex-start;align-content: center;align-items: center; margin-left: -100%;">
+        <p  style="font-weight:bolder; font-size:30px;  margin-top: 50px;">Стоимость</p>
+        <input type="text" style="width:50%; margin-left: 13.5%;  background: transparent; border: none; border-bottom: 1px solid #000000; border-color: #33BBFE;">
+      </li>
+      <li style = "display: flex; flex-direction: row;justify-content: flex-start;align-content: center;align-items: center; margin-left: -100%;">
+        <p  style="font-weight:bolder; font-size:30px;  margin-top: 50px;">Ширина</p>
+        <input type="text" style="width:50%; margin-left: 15.5%;  background: transparent; border: none; border-bottom: 1px solid #000000; border-color: #33BBFE;">
+      </li>
+      <li style = "display: flex; flex-direction: row;justify-content: flex-start;align-content: center;align-items: center; margin-left: -100%;">
+        <p  style="font-weight:bolder; font-size:30px;  margin-top: 50px;">Высота</p>
+        <input type="text" style="width:50%; margin-left: 15.5%;  background: transparent; border: none; border-bottom: 1px solid #000000; border-color: #33BBFE;">
+      </li>
+      <li style = "display: flex; flex-direction: row;justify-content: flex-start;align-content: center;align-items: center; margin-left: -100%;">
+        <button type="submit" style="font-size:30px;  margin-top: 770px; margin-right: 1500px;">
+            <a href="index.html?item=5" style="font-weight:bolder; color:white">
+                Добавить
+            </a>
+        </button>
+      </li>
     </ul>
 </div>
 <div class="footer">
-    <div class="copyright"></div>
+    <div class="copyright" data-slide="next" href="#"><a style="margin-left: 13%; font-weight:bolder; font-size:30px;color:white">Copyright</a></div>
 </div>
 </body>
 </html>

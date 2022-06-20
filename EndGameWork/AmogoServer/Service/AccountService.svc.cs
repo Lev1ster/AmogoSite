@@ -29,11 +29,24 @@ namespace AmogoWebSite.Service
             return Model.Accounts.accounts.Find(acc => acc.id == pid);
         }
 
+        [WebGet(UriTemplate = "/Accounts?login={login}&password={password}", ResponseFormat = WebMessageFormat.Json)]
+        public Model.Accounts GetAccount(string login, string password)
+        {
+            var acc = Model.Accounts.accounts.Find(ac => ac.login == login && ac.password == password);
+
+            if(acc == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            return acc;
+        }
+
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json,
             UriTemplate = "/Accounts", ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped)]
         public void AddAccounts(string login, string password, string name, string lastName,
-            string telephone, string isAdmin, string urlAvatar = "")
+            string telephone, string isAdmin = "", string urlAvatar = "")
         {
             if (!byte.TryParse(isAdmin, out var pid))
             {
@@ -41,6 +54,14 @@ namespace AmogoWebSite.Service
             }
 
             Model.Accounts.Add(login, password, name, lastName, telephone, pid, urlAvatar);
+        }
+
+        [WebGet(UriTemplate = "/Account/reg/istr?login={login}&password={password}" +
+            "&name={name}&lastName={lastName}&telephone={telephone}&urlAvatar={urlAvatar}", ResponseFormat = WebMessageFormat.Json)]
+        public void AddAccount(string login, string password, string name, string lastName,
+            string telephone, string urlAvatar = "")
+        {
+            Model.Accounts.Add(login, password, name, lastName, telephone, 0, urlAvatar);
         }
 
         [WebInvoke(Method = "DELETE", RequestFormat = WebMessageFormat.Json,

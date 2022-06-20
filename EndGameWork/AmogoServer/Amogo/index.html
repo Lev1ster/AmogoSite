@@ -10,14 +10,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="slider/chief-slider.min.js"></script>
 
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+
     <script>
+        if (document.location.search != '') {
+            document.cookie = "idAcc = " + document.location.search.replace("?id=", "");
+        }
+
         var category = "";
         var product = "";
 
         var count = 0;
-        $.getJSON("http://localhost:49168/Service/CategoryService.svc/Category", function (data) {
+        $.getJSON("http://localhost:65388/Service/CategoryService.svc/Category", function (data) {
             for (key in data) {
-                category += "<div class=\"slider__item\">" + data[key]["name"] + "</div>";
+                category += "<div class=\"slider__item\"> </div>";
             }
 
             document.getElementById("categoryMain").innerHTML = category;
@@ -25,17 +37,19 @@
 
         product += "<li class=\"maincenter\">";
 
-        $.getJSON("http://localhost:49168/Service/ProductService.svc/Category/SubCategory/Product", function (data) {
+        $.getJSON("http://localhost:65388/Service/ProductService.svc/Category/SubCategory/Product", function (data) {
             for (key in data) {
                 if (count % 4 == 0 && count > 0) {
                     product += "</li><li class=\"maincenter\">"
                 }
 
-                product += " <div class=\"mainlist\">" + data[key]["name"] + "</div>";
+                product += '<div class="mainlist"> <img src="' + data[key]["urlImage"] + '"/><a style="margin-left: 13%; font-weight:bolder; font-size:15px" href="Billboard.html">' + data[key]["name"] +'</a> </div>';
 
                 count++;
             }
-
+            if (document.location.search.replace("?item=", "") == "5") {
+                product += '<ul><div class="mainlist"> <img src="img/2.jpg"><a style="margin-left: 13%; font-weight:bolder; font-size:15px" href="Billboard.html">1</a> </div></ul>'
+            }
             document.getElementById("productMain").innerHTML = product;
         });
 
@@ -64,13 +78,13 @@
                 Помощь
             </a>
         </div>
-        <div class="labelRA">
-            <a href="" style="font-weight:bolder; color:white">
+        <div class="labelRA" id="profileLL">
+            <a href="login/index.html" style="font-weight:bolder; color:white">
                 Войти/Регистрация
             </a>
         </div>
         <div class="labelAdvertisement">
-            <a href="" style="font-weight:bolder; color:white">
+            <a href="advertisement.html" style="font-weight:bolder; color:white">
                 Разместить объявление
             </a>
         </div>
@@ -86,7 +100,6 @@
                 </a>
             </button>
         </form>
-
     </div>
 
     <div class="container">
@@ -107,8 +120,31 @@
         <ul id="productMain">
         </ul>
     </div>
-    <div class="footer">
-        <div class="copyright" data-slide="next" href="#"></div>
+    <div class="footer" style="margin-top:140px">
+        <div class="copyright" data-slide="next" href="#"><a style="margin-left: 13%; font-weight:bolder; font-size:30px;color:white">Copyright</a></div>
     </div>
+
+
+    <script>
+        if (document.cookie.replace("idAcc=", "") != '') {
+            document.getElementById("profileLL").innerHTML = '<a href="favorite.html?id=2" style="font-weight: bolder; color:white">login2</a><p style="width:40px"></p> <a href="https://localhost:44390/Amogo/index.html" style="font-weight: bolder; color:white" onclick="ex()">Exit</a>';
+        }
+    </script>
+
+    <script>
+        function ex() {
+            document.cookie = "idAcc=";
+        }
+    </script>
+
+    <script src="vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendors/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 </body>
 </html>
